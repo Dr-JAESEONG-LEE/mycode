@@ -1,7 +1,8 @@
 import time
+from typing import Callable, Any
 
-def my_timer(func):
-    def wrapper(*args, **kwargs):
+def my_timer(func: Callable[..., Any]) -> Callable[..., Any]:
+    def wrapper(*args: Any, **kwargs: Any) -> Any:
         start = time.time()
         result = func(*args, **kwargs)
         end = time.time()
@@ -10,7 +11,7 @@ def my_timer(func):
     return wrapper
 
 @my_timer
-def slow_add(a, b):
+def slow_add(a: int, b: int):
     time.sleep(0.5)
     return a + b
 
